@@ -71,4 +71,19 @@ const valueOfCard = (carta) => {
 
 console.log(valueOfCard('KC'));
 
+//MANEJANDO EL DOM
+
+//document
+
+document.querySelector('img'); // trae la primera etiqueta html 'img' que encuentra , el querySelectorAll retorna un arreglo con todas las img que encuentre
+
+// cada objeto de html podemos acceder a sus propiedades y icluso cambiarlas como por ejemplo .src
+// con el     .innerText , cambio o inserto texto del html , con el .innerHtml inserto una etiqueta html
+
+document.getElementById('id_clase'); // me retorna el objeto html
+
+document.querySelector('#para_id_class'); // para buscar el primer elemento por id de clase
+document.querySelector('.clase_name'); //para buscar el primer elemeto por clase
+
+
 
