@@ -1,3 +1,6 @@
+
+
+
 class Persona {
 
     //SEGUN BUENAS PRACTICAS
@@ -52,17 +55,19 @@ class Persona {
 }
 
 
-const spiderman = new Persona('Peter Parker','Spiderman','Soy tu amigable vecino Spiderman');
+class Heroe extends Persona {
+    clan = 'Sin clan';
 
+    constructor(nombre,codigo,frase){
+        //como es una clase que heredo de otra, cuando creo su propio constructor
+        //debo llamar el constructor del padre tbn , esto se hace invocando el metodo super(); dentro del constructor
+        super(nombre,codigo,frase);
+        //para usar el this en este cosntructor siempre primero debo llamar al constructor padre con el metodo super();
+        this.clan = 'Los Avengers!';
+
+    }
+}
+
+const spiderman = new Heroe('Peter Parker','Spiderman','Soy tu vecino');
 
 spiderman.quiensoy();
-spiderman.miFrase();
-spiderman.setComidaFavorita = 'El pastel de cereza de la tia may!';
-
-console.log(spiderman.getComidaFavorita);
-
-
-console.log(spiderman);
-console.log(Persona._conteo);
-console.log(Persona.conteoMsj); 
-console.log(Persona.mensaje());
