@@ -4,7 +4,7 @@ class Persona {
 
     //truco para usar el destructuring y crear una nueva instancia
 
-    static porObjeto({persona}){
+    static porObjeto({nombre,apellido,pais}){
         return new Persona(nombre,apellido,pais);
 
     }
@@ -23,6 +23,16 @@ class Persona {
     }
 }
 
+const cinthia = {
+    nombre: 'Cinthia',
+    apellido: 'Chira',
+    pais: 'Peru'
+}
+
 const personita = new Persona('Alejandro','Cabrera','Peru');
 
 personita.getInfo();
+
+const personita2 = Persona.porObjeto(cinthia);
+
+personita2.getInfo();
