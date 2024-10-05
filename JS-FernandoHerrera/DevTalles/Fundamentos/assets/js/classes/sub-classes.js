@@ -64,8 +64,16 @@ class Heroe extends Persona {
         super(nombre,codigo,frase);
         //para usar el this en este cosntructor siempre primero debo llamar al constructor padre con el metodo super();
         this.clan = 'Los Avengers!';
-
+        
     }
+    //sobre escritura de  metodos
+    quiensoy(){
+        //como tengo el mismo metodo de la clase pedro , puedo llamarlo tbn usando super.quiensoy()
+        //el termino super solo puede ser usado dentro de un constructor o funcion
+        super.quiensoy();
+        console.log(`Soy ${this.nombre} y mi identidad es: ${this.codigo}------`);
+    };
+    
 }
 
 const spiderman = new Heroe('Peter Parker','Spiderman','Soy tu vecino');
