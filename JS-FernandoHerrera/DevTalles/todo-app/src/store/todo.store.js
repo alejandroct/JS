@@ -1,7 +1,7 @@
 import { Todo } from "../todos/models/todo.model";
 
 
-const Filters = {
+export const Filters = {
     All:'all',
     Completed:'completed',
     Pending:'Pending'
@@ -18,12 +18,21 @@ const state = {
 };
 
 const initStore = () => {
-    console.log(state);
-    console.log('Store inicializado');
+    loadStore();
+    console.log('Store inicializado!!!!');
 };
 
 const loadStore = () => {
-    throw new Error('Not implemented');
+    if( !localStorage.getItem('state')) return;
+
+    const { todos = [], filter = Filters.All} = JSON.parse(localStorage.getItem('state'));
+    state.todos = todos;
+    state.filter = filter;
+};
+
+const saveStateToLocalStorage = () => {
+    localStorage.setItem('state',JSON.stringify(state));
+    
 };
 
 const getTodos = (filter = Filters.All) => {
@@ -47,6 +56,7 @@ const addTodo = (description) => {
     if (!description) throw new Error('Description is required.');
     
     state.todos.push( new Todo(description) );
+    saveStateToLocalStorage();
 };
 
 /**
@@ -61,10 +71,13 @@ const toggleTodo = (todoId) => {
     // Si se encuentra el todo, cambia el valor de "done"
     if (todo) {
         todo.done = !todo.done;
+        saveStateToLocalStorage();
     } else {
         console.error(`Todo with id ${todoId} not found`);
     }
     return todo;
+
+    
 
     //menos eficiente porque barre todo el arreglo
     /* state.todos = state.todos.map( todo => {
@@ -82,11 +95,13 @@ const toggleTodo = (todoId) => {
 const deleteTodo = (todoId) => {
     if (!todoId) throw new Error('todoId is required.');
     state.todos = state.todos.filter( todo => todo.id !== todoId);
+    saveStateToLocalStorage();
 };
 
 
 const deleteCompleted = () => {
     state.todos = state.todos.filter( todo => !todo.done);
+    saveStateToLocalStorage();
 };
 
 /**
@@ -100,6 +115,7 @@ const setFilter = (newFilter = Filters.All) => {
     }
     // Si es válido, actualiza el estado
     state.filter = newFilter;
+    saveStateToLocalStorage();
 };
 
 const getCurrentFilter = () => {
